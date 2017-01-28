@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addAPot"></activity>
+        <activity android:name=".addAPot" />
+        <activity android:name=".calculateServing"></activity>
     </application>
 
 </manifest>
