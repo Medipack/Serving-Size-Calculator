@@ -7,7 +7,7 @@ package com.example.medipack.servingsizecalculator;
  * Class to manage a collection of pots.
  */
 public class PotCollection {
-    private List<Pot> pots = new ArrayList<>();
+    private ArrayList<Pot> pots = new ArrayList<Pot>();
 
 
     public void addPot(Pot pot) {
