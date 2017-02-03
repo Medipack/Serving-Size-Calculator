@@ -1,5 +1,6 @@
 package com.example.medipack.servingsizecalculator;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,11 +16,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "PotCalc";
+    public static final int REQUEST_CODE = 1001;
     PotCollection potList;
     //listView : {views: pots.xml}
 
     Pot test = new Pot("test", 70);
-
 
 
     @Override
@@ -30,20 +31,19 @@ public class MainActivity extends AppCompatActivity {
         potList.addPot(test);
         populateListView();
 
-        addPotLaunch();
+        addPotLaunch(potList);
     }
 
-    private void addPotLaunch() {
+    private void addPotLaunch(PotCollection potList) {
         Button addPotBtn = (Button) findViewById(R.id.addPot);
         addPotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "Add pot button clicked");
-
                 // Launch add_a_Pot activity
                 //Intent intent = new Intent(MainActivity.this,addAPot.class);
                 Intent addPotIntent = addAPot.makeIntent(MainActivity.this);
-                startActivity(addPotIntent);
+                startActivityForResult(addPotIntent, REQUEST_CODE);
             }
         });
     }
@@ -67,4 +67,21 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,addAPot.class);
 
     }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_CODE:
+                if (resultCode == Activity.RESULT_OK) {
+                    String name = data.getStringExtra("nameAdded");
+                    int weight = data.getIntExtra("weightAdded", 1);
+                    Pot newPot = new Pot(name, weight);
+                    potList.addPot(newPot);
+                    populateListView();
+                    Log.i(TAG, "Pot has been added");
+                }else{
+                    Log.i(TAG, "Activity cancelled");
+                }
+        }
+    }
 }
