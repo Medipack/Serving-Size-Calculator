@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,24 @@ public class MainActivity extends AppCompatActivity {
         potList.addPot(test);
         populateListView();
 
+        //Make items clickable
+        itemsClickabale();
+
         addPotLaunch(potList);
+    }
+
+    private void itemsClickabale() {
+        ListView list = (ListView) findViewById(R.id.potList);
+        //set list items clickable
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(TAG, "Item clicked");
+                //Launches pot calculation activity
+                Intent potCalcIntent = calculateServing.makeIntent(MainActivity.this);
+                startActivity(potCalcIntent);
+            }
+        });
     }
 
     private void addPotLaunch(PotCollection potList) {

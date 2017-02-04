@@ -18,4 +18,5 @@
     <string name="ok">OK</string>
     <string name="s">%s$</string>
     <string name="i">%i$</string>
+    <string name="goBack">Return</string>
 </resources>
