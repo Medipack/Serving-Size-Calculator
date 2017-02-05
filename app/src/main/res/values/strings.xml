@@ -16,7 +16,9 @@
     <string name="weight_with_food_g">Weight with food (g)</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
-    <string name="s">%s$</string>
-    <string name="i">%i$</string>
+    <string name="variableString">%1$s</string>
+    <string name="variableInteger">%1$i</string>
     <string name="goBack">Return</string>
+    <string name="food_weight_g">Food Weight (g)</string>
+    <string name="defaultVal">0</string>
 </resources>

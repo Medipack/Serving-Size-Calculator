@@ -32,21 +32,26 @@ public class MainActivity extends AppCompatActivity {
         potList.addPot(test);
         populateListView();
 
-        //Make items clickable
-        itemsClickabale();
+        //Make list items clickable
+        itemsClickable(potList);
 
         addPotLaunch(potList);
     }
 
-    private void itemsClickabale() {
+    private void itemsClickable(final PotCollection potList) {
         ListView list = (ListView) findViewById(R.id.potList);
         //set list items clickable
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i(TAG, "Item clicked");
+                //Extract the information
+                Pot listedPot = potList.getPot(position);
+                String name = listedPot.getName();
+                int weight = listedPot.getWeightInG();
+
+                Intent potCalcIntent = calculateServing.makeIntent(MainActivity.this, name, weight);
                 //Launches pot calculation activity
-                Intent potCalcIntent = calculateServing.makeIntent(MainActivity.this);
                 startActivity(potCalcIntent);
             }
         });
@@ -81,18 +86,13 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
     }
 
-    /*public void additionalPot(View view){
-        Intent intent = new Intent(this,addAPot.class);
-
-    }*/
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CODE:
                 if (resultCode == Activity.RESULT_OK) {
                     String name = data.getStringExtra("nameAdded");
-                    int weight = data.getIntExtra("weightAdded", 1);
+                    int weight = data.getIntExtra("weightAdded", 0);
                     Pot newPot = new Pot(name, weight);
                     potList.addPot(newPot);
                     populateListView();
