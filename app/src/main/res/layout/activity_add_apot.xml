@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.medipack.servingsizecalculator.addAPot">
+    tools:context="com.example.calvin.servingsizecalculator.addAPot">
 
     <TextView
         android:text="@string/pot_name"
@@ -38,44 +38,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/NameField"
+        android:id="@+id/nameField"
         android:inputType="text"
         android:hint="@string/name_field_hint"
         style="@style/Widget.AppCompat.EditText"
         android:layout_alignBaseline="@+id/potName"
         android:layout_alignBottom="@+id/potName"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        tools:ignore="RelativeOverlap" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_below="@+id/NameField"
-        android:layout_alignLeft="@+id/NameField"
-        android:layout_alignStart="@+id/NameField"
+        android:layout_below="@+id/nameField"
+        android:layout_alignLeft="@+id/nameField"
+        android:layout_alignStart="@+id/nameField"
         android:id="@+id/weightField"
         android:hint="@string/weight_field_hint"
         android:inputType="numberDecimal" />
 
-    <Button
-        android:text="@string/cancel"
+    <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/weightField"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/Cancel" />
+        android:layout_alignParentEnd="true">
 
-    <Button
-        android:text="@string/ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/Cancel"
-        android:layout_toLeftOf="@+id/Cancel"
-        android:layout_toStartOf="@+id/Cancel"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp"
-        android:id="@+id/OK" />
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:text="@string/ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:id="@+id/OK" />
+
+            <Button
+                android:text="@string/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Cancel" />
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>

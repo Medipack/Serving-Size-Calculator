@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.medipack.servingsizecalculator.MainActivity">
+    tools:context="com.example.calvin.servingsizecalculator.MainActivity">
 
     <Button
         android:text="@string/add_pot"
@@ -17,7 +17,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="additionalPot"
         android:id="@+id/addPot" />
 
     <ListView

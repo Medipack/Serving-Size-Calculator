@@ -1,8 +1,4 @@
-package com.example.medipack.servingsizecalculator;
-
-import java.util.IllegalFormatFlagsException;
-
-import javax.crypto.NullCipher;
+package com.example.calvin.servingsizecalculator;
 
 /**
  * Store information about a single pot
@@ -10,8 +6,8 @@ import javax.crypto.NullCipher;
 
 public class Pot {
 
-    String potName;
-    int potWeight;
+    private String potName;
+    private int potWeight;
 
     // Set member data based on parameters.
     public Pot(String name, int weightInG) {

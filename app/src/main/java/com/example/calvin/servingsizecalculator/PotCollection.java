@@ -1,4 +1,4 @@
-package com.example.medipack.servingsizecalculator;
+package com.example.calvin.servingsizecalculator;
 
         import java.util.ArrayList;
         import java.util.List;
@@ -7,11 +7,15 @@ package com.example.medipack.servingsizecalculator;
  * Class to manage a collection of pots.
  */
 public class PotCollection {
-    private ArrayList<Pot> pots = new ArrayList<Pot>();
+    private List<Pot> pots = new ArrayList<Pot>();
 
 
     public void addPot(Pot pot) {
         pots.add(pot);
+    }
+
+    public void removePot(int index){
+        pots.remove(index);
     }
 
     public void changePot(Pot pot, int indexOfPotEditing) {

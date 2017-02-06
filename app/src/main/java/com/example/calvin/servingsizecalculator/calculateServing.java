@@ -1,4 +1,4 @@
-package com.example.medipack.servingsizecalculator;
+package com.example.calvin.servingsizecalculator;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,19 +13,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class calculateServing extends AppCompatActivity {
     private static final String EXTRA_NAME = "EXTRA_NAME";
     private static final String EXTRA_WEIGHT = "EXTRA WEIGHT";
-    private static final String TAG = "calcServ";
+    private static final String TAG = "PotCalcApp";
+    public static final int RESULT_DELETE = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_serving);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         //Pot Name
         String name = intent.getStringExtra(EXTRA_NAME);
         TextView listedName = (TextView) findViewById(R.id.potName);
@@ -37,6 +36,30 @@ public class calculateServing extends AppCompatActivity {
         listedWeight.setText(""+emptyPot);
 
         //Weight with food
+        weightWithFood(emptyPot);
+        //# of servings
+        numberServings();
+        //Delete function
+        deleteButton(intent);
+        //Returns to previous activity
+        returnButton();
+    }
+
+    private void deleteButton(final Intent intent) {
+        Button deleteBtn = (Button) findViewById(R.id.delete);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = intent.getIntExtra("potIndex", 0);
+                Intent intentDel = new Intent();
+                intentDel.putExtra("potIndex", position);
+                setResult(RESULT_DELETE, intent);
+                finish();
+            }
+        });
+    }
+
+    private void weightWithFood(final int emptyPot) {
         final EditText totalWeight = (EditText) findViewById(R.id.totalWeightField);
         totalWeight.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,8 +88,9 @@ public class calculateServing extends AppCompatActivity {
                 foodWeight.setText(""+food);
             }
         });
+    }
 
-        //# of servings
+    private void numberServings() {
         final EditText numServings = (EditText) findViewById(R.id.servingNumField);
         numServings.addTextChangedListener(new TextWatcher() {
             @Override
@@ -98,15 +122,14 @@ public class calculateServing extends AppCompatActivity {
                 servSize.setText(""+indivServ);
             }
         });
-        returnButton();
     }
 
     private void returnButton() {
-        Button addPotBtn = (Button) findViewById(R.id.goBack);
-        addPotBtn.setOnClickListener(new View.OnClickListener() {
+        Button returnBtn = (Button) findViewById(R.id.goBack);
+        returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Cancelled");
+                Log.i(TAG, "Returning");
                 finish();
             }
         });
