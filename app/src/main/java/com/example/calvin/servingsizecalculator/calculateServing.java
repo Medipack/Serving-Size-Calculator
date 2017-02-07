@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,10 @@ public class calculateServing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_serving);
+
+        //Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBarAddPot);
+        setSupportActionBar(toolbar);
 
         final Intent intent = getIntent();
         //Pot Name
@@ -44,6 +51,29 @@ public class calculateServing extends AppCompatActivity {
         deleteButton(intent);
         //Returns to previous activity
         returnButton();
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.calc_serving, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.toolBarBack:
+                Log.i(TAG, "Returning");
+                finish();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void deleteButton(final Intent intent) {

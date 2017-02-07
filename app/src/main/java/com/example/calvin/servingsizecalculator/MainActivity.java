@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,11 +26,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBarAddPot);
+        setSupportActionBar(toolbar);
+
         potList = new PotCollection();
         populateListView();
         //Make list items clickable
         itemsClickable(potList);
-        addPotLaunch();
+        addPotButton();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    //Toolbar buttons
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.toolBarAddPot:
+                addPotLauncher();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addPotLauncher() {
+        Log.i(TAG, "Add Pot button clicked");
+        // Launch add_a_Pot activity
+        Intent addPotIntent = addAPot.makeIntent(MainActivity.this);
+        startActivityForResult(addPotIntent, REQUEST_CODE_ADDPOT);
     }
 
     private void itemsClickable(final PotCollection potList) {
@@ -68,15 +99,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void addPotLaunch() {
+    private void addPotButton() {
         Button addPotBtn = (Button) findViewById(R.id.addPot);
         addPotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Add Pot button clicked");
-                // Launch add_a_Pot activity
-                Intent addPotIntent = addAPot.makeIntent(MainActivity.this);
-                startActivityForResult(addPotIntent, REQUEST_CODE_ADDPOT);
+                addPotLauncher();
             }
         });
     }

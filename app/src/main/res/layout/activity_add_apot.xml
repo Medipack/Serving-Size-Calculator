@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_apot"
     android:layout_width="match_parent"
@@ -9,18 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.calvin.servingsizecalculator.addAPot">
-
-    <TextView
-        android:text="@string/pot_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/potName"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:textColor="@android:color/black" />
 
     <TextView
         android:text="@string/pot_weight_g"
@@ -38,20 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/nameField"
-        android:inputType="text"
-        android:hint="@string/name_field_hint"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_alignBaseline="@+id/potName"
-        android:layout_alignBottom="@+id/potName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        tools:ignore="RelativeOverlap" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_below="@+id/nameField"
         android:layout_alignLeft="@+id/nameField"
         android:layout_alignStart="@+id/nameField"
@@ -62,7 +37,7 @@
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="97dp"
         android:layout_below="@+id/weightField"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
@@ -87,5 +62,42 @@
         </TableRow>
 
     </TableLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBarAddPot"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorButtonNormal"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/pot_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/potName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="14dp"
+        android:layout_below="@+id/toolBarAddPot"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/nameField"
+        android:inputType="text"
+        android:hint="@string/name_field_hint"
+        style="@style/Widget.AppCompat.EditText"
+        tools:ignore="RelativeOverlap"
+        android:layout_alignBaseline="@+id/potName"
+        android:layout_alignBottom="@+id/potName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
