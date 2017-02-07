@@ -50,9 +50,8 @@ public class calculateServing extends AppCompatActivity {
         //Delete function
         deleteButton(intent);
         //Returns to previous activity
-        returnButton();
+        backButton();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,15 +66,12 @@ public class calculateServing extends AppCompatActivity {
                 Log.i(TAG, "Returning");
                 finish();
                 return true;
-
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
+    //fucntion to set up the delete button
     private void deleteButton(final Intent intent) {
         Button deleteBtn = (Button) findViewById(R.id.delete);
         deleteBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +86,7 @@ public class calculateServing extends AppCompatActivity {
         });
     }
 
+    //Checks the weight entered and calculates accordingly
     private void weightWithFood(final int emptyPot) {
         final EditText totalWeight = (EditText) findViewById(R.id.totalWeightField);
         totalWeight.addTextChangedListener(new TextWatcher() {
@@ -125,6 +122,7 @@ public class calculateServing extends AppCompatActivity {
         });
     }
 
+    //Checks for the number of servings and calculates accordingly
     private void numberServings() {
         final EditText numServings = (EditText) findViewById(R.id.servingNumField);
         numServings.addTextChangedListener(new TextWatcher() {
@@ -139,7 +137,6 @@ public class calculateServing extends AppCompatActivity {
                 try {
                     String servingWeight = numServings.getText().toString();
                     int servingInt;
-
                     //Check for null value
                     if (TextUtils.isEmpty(servingWeight)) {
                         servingInt = 0;
@@ -164,7 +161,8 @@ public class calculateServing extends AppCompatActivity {
         });
     }
 
-    private void returnButton() {
+    //Function to set the back button
+    private void backButton() {
         Button returnBtn = (Button) findViewById(R.id.goBack);
         returnBtn.setOnClickListener(new View.OnClickListener() {
             @Override

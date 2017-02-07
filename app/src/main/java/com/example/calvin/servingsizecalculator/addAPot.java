@@ -98,6 +98,7 @@ public class addAPot extends AppCompatActivity {
         }
     }
 
+    //Fills in textfield with data passed in from Main
     private void setInfo(EditText nameField, EditText weightField, Intent intent) {
         String potName = intent.getStringExtra("potName");
         nameField.setText(potName);
@@ -109,7 +110,7 @@ public class addAPot extends AppCompatActivity {
         return new Intent(context, addAPot.class);
     }
 
-    //Fucntion for the Ok button
+    //Function for the Ok button
     private void OKButton() {
         Button addPotBtn = (Button) findViewById(R.id.OK);
         addPotBtn.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +140,7 @@ public class addAPot extends AppCompatActivity {
         setResult(Activity.RESULT_OK, intent);
     }
 
+    //Function to set cancel button
     private void CancelButton() {
         Button addPotBtn = (Button) findViewById(R.id.Cancel);
         addPotBtn.setOnClickListener(new View.OnClickListener() {
