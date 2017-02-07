@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class calculateServing extends AppCompatActivity {
     private static final String EXTRA_NAME = "EXTRA_NAME";
@@ -70,22 +71,26 @@ public class calculateServing extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                String total = totalWeight.getText().toString();
-                int totalInt;
-                //Check for null value
-                if(TextUtils.isEmpty(total)){
-                    totalInt = 0;
-                }else{
-                    totalInt = Integer.parseInt(total);
+                try {
+                    String total = totalWeight.getText().toString();
+                    int totalInt;
+                    //Check for null value
+                    if (TextUtils.isEmpty(total)) {
+                        totalInt = 0;
+                    } else {
+                        totalInt = Integer.parseInt(total);
+                    }
+                    //Calculate weight of the food
+                    int food = totalInt - emptyPot;
+                    if (food < 0) {
+                        food = 0;
+                    }
+                    //Changes text accordingly
+                    TextView foodWeight = (TextView) findViewById(R.id.calcFoodWeight);
+                    foodWeight.setText("" + food);
+                }catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Number is too long", Toast.LENGTH_SHORT).show();
                 }
-                //Calculate weight of the food
-                int food = totalInt - emptyPot;
-                if(food<0){
-                    food = 0;
-                }
-                //Changes text accordingly
-                TextView foodWeight = (TextView) findViewById(R.id.calcFoodWeight);
-                foodWeight.setText(""+food);
             }
         });
     }
@@ -101,25 +106,30 @@ public class calculateServing extends AppCompatActivity {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                String servingWeight = numServings.getText().toString();
-                int servingInt;
-                //Check for null value
-                if(TextUtils.isEmpty(servingWeight)){
-                    servingInt = 0;
-                }else{
-                    servingInt = Integer.parseInt(servingWeight);
+                try {
+                    String servingWeight = numServings.getText().toString();
+                    int servingInt;
+
+                    //Check for null value
+                    if (TextUtils.isEmpty(servingWeight)) {
+                        servingInt = 0;
+                    } else {
+                        servingInt = Integer.parseInt(servingWeight);
+                    }
+                    //Calculate weight of the food
+                    TextView foodWeight = (TextView) findViewById(R.id.calcFoodWeight);
+                    String calcWeight = foodWeight.getText().toString();
+                    int calcWeightInt = Integer.parseInt(calcWeight);
+                    if (servingInt <= 0) {
+                        servingInt = 1;
+                    }
+                    int indivServ = calcWeightInt / servingInt;
+                    //Changes text accordingly
+                    TextView servSize = (TextView) findViewById(R.id.calcServingWeight);
+                    servSize.setText("" + indivServ);
+                }catch(NumberFormatException e){
+                    Toast.makeText(getApplicationContext(), "Number is too long", Toast.LENGTH_SHORT).show();
                 }
-                //Calculate weight of the food
-                TextView foodWeight = (TextView) findViewById(R.id.calcFoodWeight);
-                String calcWeight = foodWeight.getText().toString();
-                int calcWeightInt = Integer.parseInt(calcWeight);
-                if(servingInt<=0){
-                    servingInt = 1;
-                }
-                int indivServ = calcWeightInt/servingInt;
-                //Changes text accordingly
-                TextView servSize = (TextView) findViewById(R.id.calcServingWeight);
-                servSize.setText(""+indivServ);
             }
         });
     }

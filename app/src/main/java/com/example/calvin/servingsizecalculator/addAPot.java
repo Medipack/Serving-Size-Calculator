@@ -68,10 +68,14 @@ public class addAPot extends AppCompatActivity {
                     message = String.format(message, MINIMUM_WEIGHT);
                     makeToastMsg(message);
                 }else{
+                    try{
                     int weight = Integer.parseInt(potWeight);
                     passData(potName, weight, potIndex);
                     Log.i(TAG, "Add pot confirmed");
                     finish();
+                    }catch(NumberFormatException e){
+                        Toast.makeText(getApplicationContext(), "Number is too long", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
